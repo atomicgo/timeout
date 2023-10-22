@@ -5,7 +5,11 @@ import (
 	"time"
 )
 
+// Function is a function that returns a generic value and an error.
 type Function[T any] func() (T, error)
+
+// ErrTimeoutReached is returned when the timeout is reached.
+var ErrTimeoutReached = errors.New("timeout reached")
 
 // Execute executes a function and returns the result or an error if the timeout is reached.
 // If the timeout is reached, the Function will be interrupted.
@@ -29,7 +33,7 @@ func Execute[T any](duration time.Duration, fn Function[T]) (T, error) {
 	case err := <-errorChannel:
 		return zeroValue[T](), err
 	case <-time.After(duration):
-		return zeroValue[T](), errors.New("timeout reached")
+		return zeroValue[T](), ErrTimeoutReached
 	}
 }
 
