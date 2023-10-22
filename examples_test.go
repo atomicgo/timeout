@@ -1,4 +1,4 @@
-package template_test
+package timeout_test
 
 import (
 	"atomicgo.dev/template"
@@ -6,11 +6,11 @@ import (
 )
 
 func Example_demo() {
-	fmt.Println(template.HelloWorld())
+	fmt.Println(timeout.HelloWorld())
 	// Output: Hello, World!
 }
 
 func ExampleHelloWorld() {
-	fmt.Println(template.HelloWorld())
+	fmt.Println(timeout.HelloWorld())
 	// Output: Hello, World!
 }

@@ -1,4 +1,4 @@
-package template
+package timeout
 
 // HelloWorld returns `Hello, World!`.
 func HelloWorld() string {
