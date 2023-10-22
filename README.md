@@ -147,6 +147,7 @@ package main
 
 import (
 	"atomicgo.dev/timeout"
+	"errors"
 	"fmt"
 	"time"
 )
@@ -154,7 +155,7 @@ import (
 func main() {
 	res, err := timeout.Execute(time.Second*2, func() (string, error) {
 		time.Sleep(time.Second * 1)
-		return "", fmt.Errorf("some error")
+		return "", errors.New("some error") // nolint: goerr113
 	})
 
 	fmt.Println(res, err)
@@ -172,12 +173,21 @@ some error
 
 ## Index
 
+- [Variables](<#variables>)
 - [func Execute\[T any\]\(duration time.Duration, fn Function\[T\]\) \(T, error\)](<#Execute>)
 - [type Function](<#Function>)
 
 
+## Variables
+
+<a name="ErrTimeoutReached"></a>ErrTimeoutReached is returned when the timeout is reached.
+
+```go
+var ErrTimeoutReached = errors.New("timeout reached")
+```
+
 <a name="Execute"></a>
-## func [Execute](<https://github.com/atomicgo/timeout/blob/main/timeout.go#L13>)
+## func [Execute](<https://github.com/atomicgo/timeout/blob/main/timeout.go#L17>)
 
 ```go
 func Execute[T any](duration time.Duration, fn Function[T]) (T, error)
@@ -186,9 +196,9 @@ func Execute[T any](duration time.Duration, fn Function[T]) (T, error)
 Execute executes a function and returns the result or an error if the timeout is reached. If the timeout is reached, the Function will be interrupted. If the Function returns an error, the error will be returned.
 
 <a name="Function"></a>
-## type [Function](<https://github.com/atomicgo/timeout/blob/main/timeout.go#L8>)
+## type [Function](<https://github.com/atomicgo/timeout/blob/main/timeout.go#L9>)
 
-
+Function is a function that returns a generic value and an error.
 
 ```go
 type Function[T any] func() (T, error)
