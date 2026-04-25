@@ -24,6 +24,7 @@ func Execute[T any](duration time.Duration, fn Function[T]) (T, error) {
 			errorChannel <- err
 			return
 		}
+
 		resultChannel <- result
 	}()
 

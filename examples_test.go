@@ -1,10 +1,11 @@
 package timeout_test
 
 import (
-	"atomicgo.dev/timeout"
 	"errors"
 	"fmt"
 	"time"
+
+	"atomicgo.dev/timeout"
 )
 
 func Example_timeoutReached() {
@@ -32,7 +33,7 @@ func Example_timeoutNotReached() {
 func Example_timeoutWithError() {
 	res, err := timeout.Execute(time.Second*2, func() (string, error) {
 		time.Sleep(time.Second * 1)
-		return "", errors.New("some error") // nolint: goerr113
+		return "", errors.New("some error") //nolint: goerr113
 	})
 
 	fmt.Println(res, err)
