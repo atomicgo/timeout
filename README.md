@@ -96,9 +96,10 @@ Package timeout provides a simple way to add timeouts to your Go code. The Execu
 package main
 
 import (
-	"atomicgo.dev/timeout"
 	"fmt"
 	"time"
+
+	"atomicgo.dev/timeout"
 )
 
 func main() {
@@ -127,9 +128,10 @@ Hello, World! <nil>
 package main
 
 import (
-	"atomicgo.dev/timeout"
 	"fmt"
 	"time"
+
+	"atomicgo.dev/timeout"
 )
 
 func main() {
@@ -158,16 +160,17 @@ timeout reached
 package main
 
 import (
-	"atomicgo.dev/timeout"
 	"errors"
 	"fmt"
 	"time"
+
+	"atomicgo.dev/timeout"
 )
 
 func main() {
 	res, err := timeout.Execute(time.Second*2, func() (string, error) {
 		time.Sleep(time.Second * 1)
-		return "", errors.New("some error") // nolint: goerr113
+		return "", errors.New("some error") //nolint: goerr113
 	})
 
 	fmt.Println(res, err)
